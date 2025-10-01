@@ -8,19 +8,23 @@ Test as you go! Describe in your comments what steps you took to test your code.
 """
 
 file = open("2.4/responses.csv")
+fileList = file.read().strip().split("\n")
+line = fileList[1].split(',')
+print(line[1])
 
 reply = input("what's your name?").lower().strip()
-for line in file:
-    if reply in line.lower():
-        print(line)
-        myline = line
-
 reply2 = input("who do you want to compare yourself to? enter a name in the comp sci class.").lower().strip()
+
 for line in file:
     if reply in line.lower():
         print(line)
-        myline = line
+        line = line
+    if reply2 in line.lower():
+        print(line)
+        line2 = line2
 
+result = [item for item in reply if item in reply2]
+print(result)
 
 
 
