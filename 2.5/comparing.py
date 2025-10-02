@@ -8,23 +8,37 @@ Test as you go! Describe in your comments what steps you took to test your code.
 """
 
 file = open("2.4/responses.csv")
-fileList = file.read().strip().split("\n")
-line = fileList[1].split(',')
-print(line[1])
+filee = file.readlines()
+line = ""
+line2 = ""
 
-reply = input("what's your name?").lower().strip()
-reply2 = input("who do you want to compare yourself to? enter a name in the comp sci class.").lower().strip()
+reply = input("what's your name? ").lower().strip()
+reply2 = input("who do you want to compare yourself to? ").lower().strip()
 
-for line in file:
+for line in filee:
     if reply in line.lower():
         print(line)
         line = line
+
     if reply2 in line.lower():
         print(line)
         line2 = line2
 
-result = [item for item in reply if item in reply2]
-print(result)
+line = line.split(",")
+line2 = line2.split(",")
+user = list(line)
 
 
+compare = [item for item in line if item in line2]
+result = len((compare)
 
+if result <= 0:
+    print("You guys are not alike.")
+elif result <= 5:
+    print("You guys are somewhat alike.")
+elif result <= 9:
+    print("You guys are similar to eachother.")
+elif result >= 10:
+    print("You guys share everything in common.")
+else:
+    print("I'm not sure I understand.")
