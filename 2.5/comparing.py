@@ -17,7 +17,7 @@ Compares survey responses between two people
 # 2) Compare the 2 users and return a number of things they have in common
 # 3) Return how similar they are based off the observation of how much they have in common
 
-# Read the data file
+# Open and read the data file
 file = open("2.4/responses.csv")
 lines = file.readlines()
 
@@ -46,7 +46,7 @@ for match in range(1, min(len(person1), len(person2))):
 
 print("\nNumber of things in common: " + str(matches))
 
-# Determine compatibility level
+# Determine compatibility
 if matches <= 2:
     print("You guys are not alike. Don't worry, opposites attract... Am I right..?")
 elif matches <= 4:
@@ -57,3 +57,8 @@ elif matches >= 8:
     print("You guys share a lot in common! It's best to start getting to know them better! You guys can be best friends forever!")
 else:
     print("I'm not sure I understand.")
+
+
+# Results:
+# 1) Compared Bella and Bella, prints correct comment
+# 2) Compared Bella and Erisha, prints correct comment
