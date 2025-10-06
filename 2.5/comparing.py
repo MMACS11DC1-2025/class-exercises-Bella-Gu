@@ -26,7 +26,7 @@ print("\nWelcome to the compatibility score! \nEnter 2 names and find out how ma
 
 # Get user input (2 names)
 name1 = input("\nName 1: ").lower().strip()
-name2 = input("name 2: ").lower().strip()
+name2 = input("Name 2: ").lower().strip()
 
 # Find both people in the data
 person1 = ""
