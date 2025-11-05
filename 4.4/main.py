@@ -1,57 +1,74 @@
 import turtle
 
-vines = int(input("How big do you want the spiral (vines) to be? (200 to fill the whole screen): "))
-petal = input("What colour do you want the petals to be? ")
+vines = int(input("How big do you want the spiral (vines) to be? (200 to fill the whole screen): ").lower().strip())
+petal = input("What colour do you want the petals to be? (put no spaces in between the words):  ").lower().strip()
 
 t = turtle.Turtle()
 t.speed(0)
-t.color(petal)
+t.pencolor("green") # Vine color
+leaf_color = "green"
 
-vine_color = "green"
-leaf_color = "darkgreen"
+def draw_triangle_leaf(size):
+  # Draw a triangle leaf pointing forward
+  t.color(leaf_color)
+  t.begin_fill()
+  t.forward(size * 1.5) # Point of triangle faces forward
+  t.left(150)
+  t.forward(size)
+  t.left(60)
+  t.forward(size)
+  t.left(150)
+  t.end_fill()
+  t.color("green") # Reset to vine color
 
-def draw_simple_leaf():
-    # Draw a very simple leaf (just a green dot)
-    t.color(leaf_color)
-    t.stamp()  # Use the turtle itself as a leaf
-    t.color(petal)  # Reset to petal color
+def draw_spiral(steps, current_step = 0):
+  # Recursive function to draw the spiral 
+  if current_step >= steps:
+    return
 
-def draw_spiral(steps, current_step=0):
-    # Recursive function to draw the spiral with leaves
-    if current_step >= steps:
-        return
+  t.forward(2 + current_step / 4)
+  t.left(30 - current_step / 12)
 
-    t.pencolor(vine_color)
-    t.forward(2 + current_step/4)
-    t.left(30 - current_step/12)
+  # Make petals grow bigger as spiral expands
+  petal_size = 3 + (current_step * 0.1)
 
-    # Add leaves
-    if current_step % 10 == 0 and current_step > 5:
-        # Save state
-        current_pos = t.pos()
-        current_head = t.heading()
+  # Draw the growing petal
+  t.penup()
+  t.dot(petal_size, petal)
+  t.pendown()
 
-        # Draw leaf
-        t.penup()
-        t.right(90)
-        t.forward(8)
-        draw_simple_leaf()
+  # Add triangle leaves at regular intervals
+  if current_step % 2 == 0 and current_step > 10:
+    # Save current state
+    current_pos = t.pos()
+    current_heading = t.heading()
 
-        # Restore state
-        t.penup()
-        t.goto(current_pos)
-        t.setheading(current_head)
-        t.pendown()
-
-    # Main flower stamp
+    # Draw triangle leaf
     t.penup()
-    t.dot(5, petal) # 5 is the diameter, petal is the color
+    # Position leaf on the side but keep it pointing along the spiral
+    side_offset = 10
+    if current_step % 16 == 0: # Alternate sides
+      t.right(90)
+      t.forward(side_offset)
+    else:
+      t.left(90)
+      t.forward(side_offset)
+
+    # Draw triangle pointing in spiral direction
+    leaf_size = 3 + (current_step * 0.06)
+    draw_triangle_leaf(leaf_size)
+    
+    # Return to original position
+    t.penup()
+    t.goto(current_pos)
+    t.setheading(current_heading)
     t.pendown()
 
-    draw_spiral(steps, current_step + 1)
+  # Recursive call
+  draw_spiral(steps, current_step + 1)
 
 def start():
-    draw_spiral(vines)
+  draw_spiral(vines)
 
 start()
 turtle.done()
