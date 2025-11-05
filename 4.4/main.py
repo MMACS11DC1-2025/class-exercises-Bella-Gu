@@ -5,11 +5,11 @@ petal = input("What colour do you want the petals to be? (put no spaces in betwe
 
 t = turtle.Turtle()
 t.speed(0)
-t.pencolor("green") # Vine color
-leaf_color = "green"
+t.pencolor("green") # Vine colour
+leaf_color = "green" # Lead colour
 
 def draw_triangle_leaf(size):
-  # Draw a triangle leaf pointing forward
+  # Draw a triangle leaf (pointing forward)
   t.color(leaf_color)
   t.begin_fill()
   t.forward(size * 1.5) # Point of triangle faces forward
@@ -29,15 +29,15 @@ def draw_spiral(steps, current_step = 0):
   t.forward(2 + current_step / 4)
   t.left(30 - current_step / 12)
 
-  # Make petals grow bigger as spiral expands
+  # Make petals grow bigger as spiral grows
   petal_size = 3 + (current_step * 0.1)
 
-  # Draw the growing petal
+  # Draw the petal
   t.penup()
   t.dot(petal_size, petal)
   t.pendown()
 
-  # Add triangle leaves at regular intervals
+  # Add triangle leaves
   if current_step % 2 == 0 and current_step > 10:
     # Save current state
     current_pos = t.pos()
@@ -70,5 +70,5 @@ def draw_spiral(steps, current_step = 0):
 def start():
   draw_spiral(vines)
 
-start()
+start() # Start the function
 turtle.done()
