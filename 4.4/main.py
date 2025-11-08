@@ -1,7 +1,7 @@
 import turtle
 
 vines = int(input("How big do you want the spiral (vines) to be? (200 to fill the whole screen): ").lower().strip())
-petal = input("What colour do you want the petals to be? (put no spaces in between the words):  ").lower().strip()
+petal = input("What colour do you want the petals to be? (put no spaces in between the words): ").lower().strip()
 
 t = turtle.Turtle()
 t.speed(0)
@@ -37,7 +37,7 @@ def draw_spiral(steps, current_step = 0):
   t.dot(petal_size, petal)
   t.pendown()
 
-  # Add triangle leaves, following the steps of the tutorial
+  # Add triangle leaves, following the steps of the online tutorial
   if current_step % 2 == 0 and current_step > 10:
     # Save current state
     current_pos = t.pos()
@@ -71,5 +71,5 @@ def draw_spiral(steps, current_step = 0):
 def start():
   draw_spiral(vines)
 
-start() # Start the function
+start() # Start function once the inputs are filled
 turtle.done()
