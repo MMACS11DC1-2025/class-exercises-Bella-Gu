@@ -9,7 +9,7 @@ t.pencolor("green") # Vine colour
 leaf_color = "green" # Lead colour
 
 def draw_triangle_leaf(size):
-  # Draw a triangle leaf (pointing forward)
+  # Draw a triangle leaf using an online tutorial
   t.color(leaf_color)
   t.begin_fill()
   t.forward(size * 1.5) # Point of triangle faces forward
@@ -37,7 +37,7 @@ def draw_spiral(steps, current_step = 0):
   t.dot(petal_size, petal)
   t.pendown()
 
-  # Add triangle leaves
+  # Add triangle leaves, following the steps of the tutorial
   if current_step % 2 == 0 and current_step > 10:
     # Save current state
     current_pos = t.pos()
@@ -51,6 +51,7 @@ def draw_spiral(steps, current_step = 0):
       t.right(90)
       t.forward(side_offset)
     else:
+    
       t.left(90)
       t.forward(side_offset)
 
