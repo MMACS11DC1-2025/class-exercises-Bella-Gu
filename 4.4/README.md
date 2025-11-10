@@ -1,6 +1,6 @@
 HOW IT WORKS:
     - The computer will print a vine spiral with petals and leaves.
-    - It will ask you how big you want the spiral to be, and what colour you want the petals to be.
+    - It will ask you how big you want the spiral to be, and what colour you want the petals to be. (NOTE: if the colour entered is not something that the computer knows, ex. sage green, it will automatically be a black petal.)
     - It works because the recursive function will start once the questions are fulfilled, stopping once it hits the base case.
     - If the size of the spiral is too big or small, it can cause performance issues and be difficult to see.
 
