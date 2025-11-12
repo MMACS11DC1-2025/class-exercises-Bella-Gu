@@ -9,7 +9,7 @@ t.pencolor("green") # Vine colour
 leaf_color = "green" # Lead colour
 
 def draw_triangle_leaf(size):
-  # Draw a triangle leaf using an online tutorial
+  # Draw a triangle leaf using an online tutorial https://www.geeksforgeeks.org/python/turtle-programming-python/
   t.color(leaf_color)
   t.begin_fill()
   t.forward(size * 1.5) # Point of triangle faces forward
@@ -30,7 +30,7 @@ def draw_spiral(steps, current_step = 0):
   t.left(30 - current_step / 12)
 
   # Make petals grow bigger as spiral grows
-  petal_size = 3 + (current_step * 0.1)
+  petal_size = 3 + (current_step * 0.1) 
 
   # Draw the petal
   t.penup()
