@@ -18,12 +18,7 @@ print(colour(0, 255, 0)) # green
 print(colour(0, 0, 255)) # blue
 print(colour(255, 0, 0)) # red
 """
-
-
-image_green = Image.open("kid-green.jpg").load()
-image_beach = Image.open("beach.jpg").load()
-
-image_output = Image.open("kid-green.jpg")
+image_output = Image.open("5.1/kid-green.jpg")
 
 width = image_output.width
 height = image_output.height
