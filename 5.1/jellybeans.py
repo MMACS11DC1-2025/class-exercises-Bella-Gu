@@ -3,6 +3,8 @@ from PIL import Image
 def colour(r, g, b):
     if r > 150 and g > 150 and b < 150:
         return "yellow"
+    elif r > 160 and g > 0 and b > 1:
+        return "red"
     else:
         return "other"
    
