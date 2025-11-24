@@ -1,4 +1,10 @@
+import time
+
+t0 = time.time()
+
 from PIL import Image
+
+t1 = time.time()
 
 def colour(r, g, b):
     if r > 150 and g > 150 and b < 150:
@@ -30,6 +36,8 @@ green_pixels = []
 blue_pixels = []
 orange_pixels = []
 other_pixels = []  # dor pixels that dont match any specific colour category
+
+t2 = time.time()
 
 # get image dimensions
 width = file.width
@@ -69,6 +77,8 @@ for x in range(width):
         else:
             other_pixels.append(jb_image[x,y])
 
+t3 = time.time()
+
 # calculate pixel counts for each colour
 num_yellow = len(yellow_pixels)
 num_red = len(red_pixels)
@@ -96,3 +106,10 @@ print(f"Blue pixels: {len(blue_pixels)}")
 print(f"Orange pixels: {len(orange_pixels)}")
 print(f"Other pixels: {len(other_pixels)}")
 print(f"Total pixels: {width * height}")
+
+module_load = t1-t0
+image_open_load = t2-t1
+loop = t3-t2
+entire = t3-t0
+timings = "It took {:.2f}s to import PIL, {:.2f}s to load the image, and {:.2f}s to do the loop. All in all it took {:.2f}s.".format(module_load, image_open_load, loop, entire)
+print(timings)
