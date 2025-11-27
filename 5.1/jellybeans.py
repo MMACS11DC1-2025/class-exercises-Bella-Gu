@@ -35,7 +35,7 @@ red_pixels = []
 green_pixels = []
 blue_pixels = []
 orange_pixels = []
-other_pixels = []  # dor pixels that dont match any specific colour category
+other_pixels = []  # for pixels that dont match any specific colour category
 
 t2 = time.time()
 
