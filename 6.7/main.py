@@ -10,16 +10,16 @@ t1 = time.time()
     # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 
 # load image file (import 10 photos)
-file1 = Image.open("5.1/filename.jpg")      # 10 images not imported yet
-file2 = Image.open("5.1/filename.jpg")
-file3 = Image.open("5.1/filename.jpg")
-file4 = Image.open("5.1/filename.jpg")
-file5 = Image.open("5.1/filename.jpg")
-file6 = Image.open("5.1/filename.jpg")
-file7 = Image.open("5.1/filename.jpg")
-file8 = Image.open("5.1/filename.jpg")
-file9 = Image.open("5.1/filename.jpg")
-file10 = Image.open("5.1/filename.jpg")
+file1 = Image.open("6.7/filename.jpg")      # 10 images not imported yet
+file2 = Image.open("6.7/filename.jpg")
+file3 = Image.open("6.7/filename.jpg")
+file4 = Image.open("6.7/filename.jpg")
+file5 = Image.open("6.7/filename.jpg")
+file6 = Image.open("6.7/filename.jpg")
+file7 = Image.open("6.7/filename.jpg")
+file8 = Image.open("6.7/filename.jpg")
+file9 = Image.open("6.7/filename.jpg")
+file10 = Image.open("6.7/filename.jpg")
 
 # create a pixel access object for faster pixel manipulation
 name_image = file1.load()
