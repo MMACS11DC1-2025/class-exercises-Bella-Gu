@@ -8,6 +8,18 @@ t1 = time.time()
 # def is_target_feature()
     # (e.g. colour channels as RGB tuple inputs) and returns a specific, useful output 
     # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
+def is_target_feature(r, g, b):
+    if r > 235 and b > 214 and b > 183:
+        return "beige"
+    elif r > 224 and g > 173 and b > 89:
+        return "lightbrown"
+    elif r > 166 and g > 88 and b > 26:
+        return "mediumbrown"
+    elif r > 107 and g > 39 and b > 0:
+        return "darkbrown"
+    elif r > 107 and g > 39 and b > 0:
+        return "" reher89er
+
 
 # load image files (import 10 photos)
 file1 = Image.open("6.7/bread1.jpg")
