@@ -9,7 +9,9 @@ t1 = time.time()
     # (e.g. colour channels as RGB tuple inputs) and returns a specific, useful output 
     # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 def is_target_feature(r, g, b):
-    if r > 235 and b > 214 and b > 183:
+    if r > 230 and g > 230 and b > 230:
+        return "white"                  # white background ihgioerhgio
+    elif r > 235 and b > 214 and b > 183:
         return "beige"
     elif r > 224 and g > 173 and b > 89:
         return "lightbrown"
@@ -18,8 +20,9 @@ def is_target_feature(r, g, b):
     elif r > 107 and g > 39 and b > 0:
         return "darkbrown"
     elif r > 107 and g > 39 and b > 0:
-        return "" reher89er
-
+        return "black"
+    else:
+        return "other"
 
 # load image files (import 10 photos)
 file1 = Image.open("6.7/bread1.jpg")
@@ -44,8 +47,6 @@ bread7 = file7.load()
 bread8 = file8.load()
 bread9 = file9.load()
 bread10 = file10.load()
-
-# print the RGB values and colour category of the first pixel (top left corner)
 
 # create a list to store the pixels of the specific colour
 beige_pixels = []
