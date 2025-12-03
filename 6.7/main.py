@@ -10,8 +10,8 @@ t1 = time.time()
     # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 def is_target_feature(r, g, b):
     if r > 230 and g > 230 and b > 230:
-        return "white"                  # white background ihgioerhgio
-    elif r > 235 and b > 214 and b > 183:
+        return "white"                  # white background (edit)
+    if r > 235 and b > 214 and b > 183:
         return "beige"
     elif r > 224 and g > 173 and b > 89:
         return "lightbrown"
@@ -48,6 +48,8 @@ bread8 = file8.load()
 bread9 = file9.load()
 bread10 = file10.load()
 
+breads = [bread1, bread2, bread3, bread4, bread5, bread6, bread7, bread8, bread9, bread10]
+
 # create a list to store the pixels of the specific colour
 beige_pixels = []
 lightbrown_pixels = []
@@ -57,10 +59,30 @@ black_pixels = []
 other_pixels = [] # for pixels that don't match any category (eg. white background)
 
 t2 = time.time()
-# get image dimensions
+# get image dimensions thtrhrthhtr
 
 # iterate through every pixel in the image (go through all the pixels in the image)
-    # calculate "Feature Density Score" for each image 
+    # calculate "Feature Density Score" for each image (percentage)
+for bread in range(breads):
+    width = bread[bread].width      # get image dimensions
+    height = bread[bread].height
+
+    for x in range(height):
+        for y in range(width):
+            pixel_r = bread[x,y][0]
+            pixel_g = bread[x,y][1]
+            pixel_b = bread[x,y][2]
+            colour_type = is_target_feature(pixel_r, pixel_g, pixel_b)  # determine what color category this pixel belongs to
+
+            # process pixel based on its colour category
+            if colour_type == "white":
+                other_pixels.append(bread[x,y])      # store original pixel
+            elif colour_type == "beige":
+                beige_pixels.append(bread[x,y])
+            elif colour_type == "lightbrown":
+                lightbrown_pixels.append(bread[x,y])
+                rgrgrgrgrgrg
+
 t3 = time.time()
 
 # calculate pixel counts for each colour
@@ -69,9 +91,9 @@ file.save("output.png", "png") # ??? redo
 # print results
 
 # code profiling (timings to 3 decimal places)
-module_load = t1-t0
-image_open_load = t2-t1
-loop = t3-t2
-entire = t3-t0
+module_load = t1 - t0
+image_open_load = t2 - t1
+loop = t3 - t2
+entire = t3 - t0
 timings = "It took {:.3f}s to import PIL, {:.3f}s to load the image, and {:.3f}s to do the loop. All in all it took {:.3f}s.".format(module_load, image_open_load, loop, entire)
 print(timings)
