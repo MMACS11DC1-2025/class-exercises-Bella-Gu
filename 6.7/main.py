@@ -97,8 +97,23 @@ for bread in range(breads):
     num_black = len(black_pixels)
     total_pixels = width * height
 
+    file[bread].save rgergergergregergregre
+
     # calculate "Feature Density Score" for each image (percentage)
+    other_ratio = num_other / total_pixels * 100
+    beige_ratio = num_beige / total_pixels * 100
+    lightbrown_ratio = num_lightbrown / total_pixels * 100
+    mediumbrown_ratio = num_mediumbrown / total_pixels * 100
+    darkbrown_ratio = num_darkbrown / total_pixels * 100
+    black_ratio = num_black / total_pixels * 100
+
     # print results
+        # "based off the colours (medium, black...), your bread is ...% burnt"
+
+    # implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
+        # sort the master list based on the calculated Feature Density Score (highest to lowest)
+
+    # implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
 
 t3 = time.time()
 
