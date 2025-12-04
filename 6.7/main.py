@@ -25,16 +25,16 @@ def is_target_feature(r, g, b):
         return "other"
 
 # load image files (import 10 photos)
-file1 = Image.open("6.7/bread1.jpg")
-file2 = Image.open("6.7/bread2.jpg")
-file3 = Image.open("6.7/bread3.jpg")
-file4 = Image.open("6.7/bread4.jpg")
-file5 = Image.open("6.7/bread5.jpg")
-file6 = Image.open("6.7/bread6.jpg")
-file7 = Image.open("6.7/bread7.jpg")
-file8 = Image.open("6.7/bread8.jpg")
-file9 = Image.open("6.7/bread9.jpg")
-file10 = Image.open("6.7/bread10.jpg")
+file1 = Image.open("6.7/bread1.png")
+file2 = Image.open("6.7/bread2.png")
+file3 = Image.open("6.7/bread3.png")
+file4 = Image.open("6.7/bread4.png")
+file5 = Image.open("6.7/bread5.png")
+file6 = Image.open("6.7/bread6.png")
+file7 = Image.open("6.7/bread7.png")
+file8 = Image.open("6.7/bread8.png")
+file9 = Image.open("6.7/bread9.png")
+file10 = Image.open("6.7/bread10.png")
 
 # create a pixel access object for faster pixel manipulation
 bread1 = file1.load()
@@ -100,6 +100,8 @@ for bread in range(breads):
     file[bread].save rgergergergregergregre
 
     # calculate "Feature Density Score" for each image (percentage)
+    # OR
+    # calculate the amount of pixels based off the category (ratio of each colour to total pixels)
     other_ratio = num_other / total_pixels * 100
     beige_ratio = num_beige / total_pixels * 100
     lightbrown_ratio = num_lightbrown / total_pixels * 100
@@ -107,10 +109,14 @@ for bread in range(breads):
     darkbrown_ratio = num_darkbrown / total_pixels * 100
     black_ratio = num_black / total_pixels * 100
 
-    # print results
-        # "based off the colours (medium, black...), your bread is ...% burnt"
+    total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black
 
-    # implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
+    # print results
+        # "based off the colours (medium, black...), your bread #1 is ...% burnt"
+    rurgregregregr
+    
+
+    # implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting) *UNIT 6*
         # sort the master list based on the calculated Feature Density Score (highest to lowest)
 
     # implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
