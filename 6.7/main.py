@@ -24,31 +24,11 @@ def is_target_feature(r, g, b):
     else:
         return "other"
 
-# load image files (import 10 photos)
-file1 = Image.open("6.7/bread1.png")
-file2 = Image.open("6.7/bread2.png")
-file3 = Image.open("6.7/bread3.png")
-file4 = Image.open("6.7/bread4.png")
-file5 = Image.open("6.7/bread5.png")
-file6 = Image.open("6.7/bread6.png")
-file7 = Image.open("6.7/bread7.png")
-file8 = Image.open("6.7/bread8.png")
-file9 = Image.open("6.7/bread9.png")
-file10 = Image.open("6.7/bread10.png")
+breads = ["6.7/bread1.png", "6.7/bread2.png", "6.7/bread3.png", "6.7/bread4.png", "6.7/bread5.png", "6.7/bread6.png", "6.7/bread7.png", "6.7/bread8.png", "6.7/bread9.png", "6.7/bread10.png"] # store the files in a list for nested loop
 
-# create a pixel access object for faster pixel manipulation
-bread1 = file1.load()
-bread2 = file2.load()
-bread3 = file3.load()
-bread4 = file4.load()
-bread5 = file5.load()
-bread6 = file6.load()
-bread7 = file7.load()
-bread8 = file8.load()
-bread9 = file9.load()
-bread10 = file10.load()
-
-breads = [bread1, bread2, bread3, bread4, bread5, bread6, bread7, bread8, bread9, bread10] # store the files in a list for nested loop
+for bread in breads:
+    file = Image.open(bread)
+    breadImage = file.load()
 
 # create a list to store the pixels of the specific colour
 beige_pixels = []
@@ -62,15 +42,15 @@ t2 = time.time()
 # get image dimensions thtrhrthhtr
 
 # iterate through every pixel in the image (go through all the pixels in the image)
-for bread in range(breads):
-    width = bread[bread].width      # get image dimensions
-    height = bread[bread].height
+for i in range(len(breads)):
+    width = file.width      # get image dimensions
+    height = file.height
 
     for x in range(height):
         for y in range(width):
-            pixel_r = bread[x,y][0]
-            pixel_g = bread[x,y][1]
-            pixel_b = bread[x,y][2]
+            pixel_r = (breads[i])[x,y][0]
+            pixel_g = (breads[i])[x,y][1]
+            pixel_b = (breads[i])[x,y][2]
             colour_type = is_target_feature(pixel_r, pixel_g, pixel_b)  # determine what colour category this pixel belongs to
 
             # process pixel based on its colour category
@@ -96,8 +76,6 @@ for bread in range(breads):
     num_black = len(black_pixels)
     total_pixels = width * height
 
-    file[bread].save rgergergergregergregre # ???????????
-
     # calculate "Feature Density Score" for each image (percentage)
     total_burnt = num_mediumbrown + num_darkbrown + num_black # beige and light brown do not count because it is not burnt
     total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
@@ -114,8 +92,6 @@ for bread in range(breads):
     #  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
 
 t3 = time.time()
-
-file.save("output.png", "png") # ????????
 
 # code profiling (timings to 3 decimal places)
 module_load = t1 - t0
