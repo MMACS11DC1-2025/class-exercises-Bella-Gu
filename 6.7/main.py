@@ -48,7 +48,7 @@ bread8 = file8.load()
 bread9 = file9.load()
 bread10 = file10.load()
 
-breads = [bread1, bread2, bread3, bread4, bread5, bread6, bread7, bread8, bread9, bread10]
+breads = [bread1, bread2, bread3, bread4, bread5, bread6, bread7, bread8, bread9, bread10] # store the files in a list for nested loop
 
 # create a list to store the pixels of the specific colour
 beige_pixels = []
@@ -62,7 +62,6 @@ t2 = time.time()
 # get image dimensions thtrhrthhtr
 
 # iterate through every pixel in the image (go through all the pixels in the image)
-    # calculate "Feature Density Score" for each image (percentage)
 for bread in range(breads):
     width = bread[bread].width      # get image dimensions
     height = bread[bread].height
@@ -97,36 +96,26 @@ for bread in range(breads):
     num_black = len(black_pixels)
     total_pixels = width * height
 
-    file[bread].save rgergergergregergregre
+    file[bread].save rgergergergregergregre # ???????????
 
     # calculate "Feature Density Score" for each image (percentage)
-    # OR
-    # calculate the amount of pixels based off the category (ratio of each colour to total pixels)
-    other_ratio = num_other / total_pixels * 100
-    beige_ratio = num_beige / total_pixels * 100
-    lightbrown_ratio = num_lightbrown / total_pixels * 100
-    mediumbrown_ratio = num_mediumbrown / total_pixels * 100
-    darkbrown_ratio = num_darkbrown / total_pixels * 100
-    black_ratio = num_black / total_pixels * 100
-
-    total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black
+    total_burnt = num_mediumbrown + num_darkbrown + num_black # beige and light brown do not count because it is not burnt
+    total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
+    burnt_percentage = total_burnt / total_bread * 100
 
     # print results
         # "based off the colours (medium, black...), your bread #1 is ...% burnt"
-    rurgregregregr
+    output = "Based off bread " + str[bread] + ", it is {}% burnt.".format(burnt_percentage)
     
 
-    # implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting) *UNIT 6*
+    #  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
         # sort the master list based on the calculated Feature Density Score (highest to lowest)
 
-    # implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
+    #  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
 
 t3 = time.time()
 
-# calculate pixel counts for each colour gywefuhisdklmn
-file.save("output.png", "png") # ??? redo
-
-# print results bfdvcsbdf
+file.save("output.png", "png") # ????????
 
 # code profiling (timings to 3 decimal places)
 module_load = t1 - t0
