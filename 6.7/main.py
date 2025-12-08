@@ -19,7 +19,7 @@ def is_target_feature(r, g, b):
         return "mediumbrown"
     elif r > 107 and g > 39 and b > 0:
         return "darkbrown"
-    elif r > 107 and g > 39 and b > 0:
+    elif r > 50 and g > 35 and b > 0: # redo black colour gerhg0ihre0ghnreogbnorie
         return "black"
     else:
         return "other"
@@ -30,14 +30,6 @@ for bread in breads:
     file = Image.open(bread)
     breadImage = file.load()
 
-# create a list to store the pixels of the specific colour
-beige_pixels = []
-lightbrown_pixels = []
-mediumbrown_pixels = []
-darkbrown_pixels = []
-black_pixels = []
-other_pixels = [] # for pixels that don't match any category (eg. white background)
-
 t2 = time.time()
 
 # iterate through every pixel in the image (go through all the pixels in the image)
@@ -45,26 +37,36 @@ for i in range(len(breads)):
     width = file.width      # get image dimensions
     height = file.height
 
+    # create a list to store the pixels of the specific colour
+    beige_pixels = []
+    lightbrown_pixels = []
+    mediumbrown_pixels = []
+    darkbrown_pixels = []
+    black_pixels = []
+    other_pixels = [] # for pixels that don't match any category (eg. white background)
+
     for x in range(width):
         for y in range(height):
-            pixel_r = (breads[i])[x,y][0]
-            pixel_g = (breads[i])[x,y][1]
-            pixel_b = (breads[i])[x,y][2]
+            # get pixel data
+            pixel_data = breadImage[x, y]
+            pixel_r = pixel_data[0]
+            pixel_g = pixel_data[1]
+            pixel_b = pixel_data[2]
             colour_type = is_target_feature(pixel_r, pixel_g, pixel_b)  # determine what colour category this pixel belongs to
 
             # process pixel based on its colour category
             if colour_type == "white":
-                other_pixels.append(bread[x,y])      # store original pixel
+                other_pixels.append((x, y))      # store original pixel
             elif colour_type == "beige":
-                beige_pixels.append(bread[x,y])
+                beige_pixels.append((x, y))
             elif colour_type == "lightbrown":
-                lightbrown_pixels.append(bread[x,y])
+                lightbrown_pixels.append((x, y))
             elif colour_type == "mediumbrown":
-                mediumbrown_pixels.append(bread[x,y])
+                mediumbrown_pixels.append((x, y))
             elif colour_type == "darkbrown":
-                darkbrown_pixels.append(bread[x,y])
+                darkbrown_pixels.append((x, y))
             elif colour_type == "black":
-                black_pixels.append(bread[x,y])
+                black_pixels.append((x, y))
 
     # calculate pixel counts for each colour
     num_other = len(other_pixels)
@@ -78,6 +80,7 @@ for i in range(len(breads)):
     # calculate "Feature Density Score" for each image (percentage)
     total_burnt = num_mediumbrown + num_darkbrown + num_black # beige and light brown do not count because it is not burnt
     total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
+
     if total_bread > 0: # avoid dividing by 0 for safety check
         burnt_percentage = total_burnt / total_bread * 100
     else:
@@ -85,7 +88,8 @@ for i in range(len(breads)):
 
     # print results
         # "based off the colours (medium, black...), your bread #1 is ...% burnt"
-    output = "Based off bread " + str[bread] + ", it is {}% burnt.".format(burnt_percentage)
+    output = "Based off bread {}, it is {:.2f}% burnt.".format(breads[i], burnt_percentage)
+    print(output)
     
 
     #  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
