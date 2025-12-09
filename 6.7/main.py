@@ -24,12 +24,12 @@ def is_target_feature(r, g, b):
     else:
         return "other"
 
-breads = ["6.7/bread1.png", "6.7/bread2.png", "6.7/bread3.png", "6.7/bread4.png", "6.7/bread5.png", "6.7/bread6.png", "6.7/bread7.png", "6.7/bread8.png", "6.7/bread9.png", "6.7/bread10.png"] # store the files in a list for nested loop
+breads = ["6.7/bread1.png", "6.7/bread2.png", "6.7/bread3.png", "6.7/bread4.png", "6.7/bread5.png", "6.7/bread6.png", "6.7/bread7.png", "6.7/bread8.png", "6.7/bread9.png", "6.7/bread10.png"] # store the files in a list for iterating
 
 t2 = time.time()
 
 percentage = []
-# iterate through every pixel in the image (go through all the pixels in the image)
+# iterate (go through all the pixels in the image)
 for i in range(len(breads)):
     bread_file = breads[i]
     file = Image.open(bread_file)
@@ -79,7 +79,7 @@ for i in range(len(breads)):
     total_pixels = width * height
 
     # calculate "Feature Density Score" for each image (percentage)
-    total_burnt = num_darkbrown + num_black # beige, light brown, and dark brown do not count because it is not burnt
+    total_burnt = num_darkbrown + num_black # beige, light brown, and medium brown do not count because it is not burnt
     total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
 
 
@@ -94,11 +94,10 @@ for i in range(len(breads)):
     print(output)
     
 
-    #  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
-        # sort the master list based on the calculated Feature Density Score (highest to lowest)
+#  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
+    # sort the master list based on the calculated Feature Density Score (highest to lowest)
 
-# highest to lowest
-for i in range(len(percentage)):
+for i in range(len(percentage)): # highest to lowest
     largest_index = i
 
     for j in range(i + 1, len(percentage)):
@@ -107,7 +106,7 @@ for i in range(len(percentage)):
 
 percentage[i], percentage[largest_index] = percentage[largest_index], percentage[i] # swap new largest element with old one
 top_5 = percentage[:5]
-top_five = f"{top_5:.2f}"
+print("The top 5 most burnt breads are:" + str(top_5))
     #  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
 
 t3 = time.time()
