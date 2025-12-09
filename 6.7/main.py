@@ -9,7 +9,7 @@ t1 = time.time()
     # (e.g. colour channels as RGB tuple inputs) and returns a specific, useful output 
         # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 def is_target_feature(r, g, b):
-    if r > 230 and g > 230 and b > 230:
+    if r > 230 and g > 230 and b > 230: # redo nguorehiogrehi
             return "white"                  # white background
     if r > 235 and g > 214 and b > 183:
         return "beige"
@@ -28,14 +28,15 @@ breads = ["6.7/bread1.png", "6.7/bread2.png", "6.7/bread3.png", "6.7/bread4.png"
 
 t2 = time.time()
 
+percentage = []
 # iterate through every pixel in the image (go through all the pixels in the image)
 for i in range(len(breads)):
-    for bread in breads:
-        file = Image.open(bread)
-        breadImage = file.load()
+    bread_file = breads[i]
+    file = Image.open(bread_file)
+    breadImage = file.load()
 
-        width = file.width      # get image dimensions
-        height = file.height
+    width = file.width      # get image dimensions
+    height = file.height
 
     # create a list to store the pixels of the specific colour
     beige_pixels = []
@@ -78,18 +79,17 @@ for i in range(len(breads)):
     total_pixels = width * height
 
     # calculate "Feature Density Score" for each image (percentage)
-    total_burnt = num_mediumbrown + num_darkbrown + num_black # beige and light brown do not count because it is not burnt
+    total_burnt = num_darkbrown + num_black # beige, light brown, and dark brown do not count because it is not burnt
     total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
 
-    percentage = []
+
     if total_bread > 0: # avoid dividing by 0 for safety check
         burnt_percentage = total_burnt / total_bread * 100
+        percentage.append(burnt_percentage)
     else:
         burnt_percentage = 0
-    percentage.append(burnt_percentage)
 
     # print results
-        # "based off the colours (medium, black...), your bread #1 is ...% burnt"
     output = "Based off bread {}, it is {:.2f}% burnt.".format(breads[i], burnt_percentage)
     print(output)
     
@@ -97,6 +97,17 @@ for i in range(len(breads)):
     #  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
         # sort the master list based on the calculated Feature Density Score (highest to lowest)
 
+# highest to lowest
+for i in range(len(percentage)):
+    largest_index = i
+
+    for j in range(i + 1, len(percentage)):
+        if percentage[j] > percentage[largest_index]: # find the largest
+            largest_index = j
+
+percentage[i], percentage[largest_index] = percentage[largest_index], percentage[i] # swap new largest element with old one
+top_5 = percentage[:5]
+top_five = f"{top_5:.2f}"
     #  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
 
 t3 = time.time()
