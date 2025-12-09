@@ -85,7 +85,7 @@ for i in range(len(breads)):
 
     if total_bread > 0: # avoid dividing by 0 for safety check
         burnt_percentage = total_burnt / total_bread * 100
-        percentage.append(burnt_percentage)
+        percentage.append((burnt_percentage, breads))
     else:
         burnt_percentage = 0
 
@@ -96,17 +96,20 @@ for i in range(len(breads)):
 
 #  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
     # sort the master list based on the calculated Feature Density Score (highest to lowest)
-
 for i in range(len(percentage)): # highest to lowest
+    largest_score = []
+    largest_score = percentage[i][0]
     largest_index = i
 
     for j in range(i + 1, len(percentage)):
-        if percentage[j] > percentage[largest_index]: # find the largest
+        if percentage[j][0] > percentage[largest_index][0]: # find the largest
+            large_score = percentage[j][0]
             largest_index = j
 
 percentage[i], percentage[largest_index] = percentage[largest_index], percentage[i] # swap new largest element with old one
-top_5 = percentage[:5]
-print("The top 5 most burnt breads are:" + str(top_5))
+print(percentage)
+for i in percentage[:5]:
+    print(str(i[1]) + "with" + str(i[0]))
     #  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
 
 t3 = time.time()
