@@ -85,9 +85,10 @@ for i in range(len(breads)):
 
     if total_bread > 0: # avoid dividing by 0 for safety check
         burnt_percentage = total_burnt / total_bread * 100
-        percentage.append((burnt_percentage, breads))
+        percentage.append((burnt_percentage, breads[i]))
     else:
         burnt_percentage = 0
+        percentage.append((burnt_percentage, breads[i]))
 
     # print results
     output = "Based off bread {}, it is {:.2f}% burnt.".format(breads[i], burnt_percentage)
@@ -97,20 +98,42 @@ for i in range(len(breads)):
 #  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
     # sort the master list based on the calculated Feature Density Score (highest to lowest)
 for i in range(len(percentage)): # highest to lowest
-    largest_score = []
-    largest_score = percentage[i][0]
     largest_index = i
 
     for j in range(i + 1, len(percentage)):
         if percentage[j][0] > percentage[largest_index][0]: # find the largest
-            large_score = percentage[j][0]
             largest_index = j
 
-percentage[i], percentage[largest_index] = percentage[largest_index], percentage[i] # swap new largest element with old one
-print(percentage)
+    percentage[i], percentage[largest_index] = percentage[largest_index], percentage[i] # swap new largest element with old one
+
+print("\nTop 5 most burnt breads are:")
 for i in percentage[:5]:
-    print(str(i[1]) + "with" + str(i[0]))
-    #  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
+    print(str(i[1]) + " with " + f"{i[0]:.2f}%" + " burnt.")
+
+#  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
+def search(list_of_lists, query):
+    search_start_index = 0  # define indexes of search space
+    search_end_index = len(list_of_lists) - 1
+
+    while search_start_index <= search_end_index:   # as long as our search space exists
+        midpoint = int((search_start_index + search_end_index) / 2) # calculate centre of search space
+
+        if list_of_lists[midpoint][0] == query: # if the element in the centre is what we are looking for, return!
+            return list_of_lists[midpoint][1]
+        
+        elif list_of_lists[midpoint][0] < query:    # if what we are looking for is greater than the centre value
+            search_start_index = midpoint + 1   # cut out entire left-hand side of our search space
+
+        else:   # if our query is less than our centre value
+            search_end_index = midpoint - 1 # cut out entire right-hand side of our search space
+
+search_target = 100.00    # looking for bread with 100% burn
+found_target = search(percentage, search_target)
+
+if found_target:
+    print("\nFound bread with approximately {:.2f}% burn: {}".format(search_target, found_target))
+else:
+    print("\nNo bread found with approximately {:.2f}% burn".format(search_target))
 
 t3 = time.time()
 
