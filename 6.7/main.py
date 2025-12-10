@@ -17,9 +17,9 @@ def is_target_feature(r, g, b):
         return "lightbrown"
     elif r > 166 and g > 88 and b > 26:
         return "mediumbrown"
-    elif r > 107 and g > 39 and b > 0:
+    elif r > 179 and g > 83 and b > 6:
         return "darkbrown"
-    elif r > 37 and g > 150 and b > 190:
+    elif r > 45 and g > 34 and b > 39:
         return "black"
     else:
         return "other"
