@@ -83,7 +83,7 @@ for i in range(len(breads)):
     total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
 
 
-    if total_bread > 0: # avoid dividing by 0 for safety check
+    if total_bread > 0: # avoid dividing by 0 for safety
         burnt_percentage = total_burnt / total_bread * 100
         percentage.append((burnt_percentage, breads[i]))
     else:
@@ -95,7 +95,7 @@ for i in range(len(breads)):
     print(output)
     
 
-#  *UNIT 6* implement the Selection Sort algorithm function *yourself* (not using built-in libraries for sorting)
+#  *UNIT 6* implement the Selection Sort algorithm function yourself (not using built-in libraries for sorting)
     # sort the master list based on the calculated Feature Density Score (highest to lowest)
 for i in range(len(percentage)): # highest to lowest
     largest_index = i
@@ -108,9 +108,9 @@ for i in range(len(percentage)): # highest to lowest
 
 print("\nTop 5 most burnt breads are:")
 for i in percentage[:5]:
-    print(str(i[1]) + " with " + f"{i[0]:.2f}%" + " burnt.")
+    print(str(i[1]) + " with " + f"{i[0]:.2f}%" + " burn.")
 
-#  *UNIT 6* implement the Binary Search algorithm function *yourself* to search the sorted list for a specific target score
+#  *UNIT 6* implement the Binary Search algorithm function yourself to search the sorted list for a specific target score
 def search(list_of_lists, query):
     search_start_index = 0  # define indexes of search space
     search_end_index = len(list_of_lists) - 1
