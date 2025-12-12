@@ -9,17 +9,17 @@ t1 = time.time()
     # (e.g. colour channels as RGB tuple inputs) and returns a specific, useful output 
         # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 def is_target_feature(r, g, b):
-    if r > 230 and g > 230 and b > 230: # redo nguorehiogrehi
+    if r > 230 and g > 230 and b > 230:
             return "white"                  # white background
-    if r > 235 and g > 214 and b > 183:
+    if r > 235 and r <= 250 and g > 214 and g <= 229 and b > 183 and b <= 195:
         return "beige"
-    elif r > 224 and g > 173 and b > 89:
+    elif r > 224 and r <= 234 and g > 173 and g <= 188 and b > 89 and b <= 104:
         return "lightbrown"
-    elif r > 166 and g > 88 and b > 26:
+    elif r > 179 and g > 88 and b > 26:
         return "mediumbrown"
-    elif r > 179 and g > 83 and b > 6:
+    elif r > 100 and g > 83 and b > 37:
         return "darkbrown"
-    elif r > 45 and g > 34 and b > 39:
+    elif r > 45 and g > 34 and b > 6:
         return "black"
     else:
         return "other"
@@ -44,8 +44,7 @@ for i in range(len(breads)):
     mediumbrown_pixels = []
     darkbrown_pixels = []
     black_pixels = []
-    other_pixels = [] # for pixels that don't match any category (eg. white background)
-
+    white_pixels = []
     for x in range(width):
         for y in range(height):
             # get pixel data
@@ -57,7 +56,7 @@ for i in range(len(breads)):
 
             # process pixel based on its colour category
             if colour_type == "white":
-                other_pixels.append((x, y))      # store original pixel
+                white_pixels.append((x, y))      # store original pixel
             elif colour_type == "beige":
                 beige_pixels.append((x, y))
             elif colour_type == "lightbrown":
@@ -70,7 +69,7 @@ for i in range(len(breads)):
                 black_pixels.append((x, y))
 
     # calculate pixel counts for each colour
-    num_other = len(other_pixels)
+    num_other = len(white_pixels)
     num_beige = len(beige_pixels)
     num_lightbrown = len(lightbrown_pixels)
     num_mediumbrown = len(mediumbrown_pixels)
@@ -112,19 +111,20 @@ for i in percentage[:5]:
 
 #  *UNIT 6* implement the Binary Search algorithm function yourself to search the sorted list for a specific target score
 def search(list_of_lists, query):
+    querymin = query - 10
     search_start_index = 0  # define indexes of search space
     search_end_index = len(list_of_lists) - 1
 
     while search_start_index <= search_end_index:   # as long as our search space exists
         midpoint = int((search_start_index + search_end_index) / 2) # calculate centre of search space
 
-        if list_of_lists[midpoint][0] == query: # if the element in the centre is what we are looking for, return!
+        if list_of_lists[midpoint][0] <= query and list_of_lists[midpoint][0] >= querymin: # if the element in the centre is what we are looking for, return element
             return list_of_lists[midpoint][1]
         
-        elif list_of_lists[midpoint][0] < query:    # if what we are looking for is greater than the centre value
+        elif list_of_lists[midpoint][0] <= query and list_of_lists[midpoint][0] >= querymin:    # if what we are looking for is greater than the centre value:
             search_start_index = midpoint + 1   # cut out entire left-hand side of our search space
 
-        else:   # if our query is less than our centre value
+        else:   # if our query is less than our centre value:
             search_end_index = midpoint - 1 # cut out entire right-hand side of our search space
 
 search_target = 100.00    # looking for bread with 100% burn
@@ -140,7 +140,7 @@ t3 = time.time()
 # code profiling (timings to 3 decimal places)
 module_load = t1 - t0
 image_open_load = t2 - t1
-loop = t3 - t2
+print_output = t3 - t2
 entire = t3 - t0
-timings = "It took {:.3f}s to import PIL, {:.3f}s to load the image, and {:.3f}s to do the loop. All in all it took {:.3f}s.".format(module_load, image_open_load, loop, entire)
+timings = "It took {:.3f}s to import PIL, {:.3f}s to load the image, and {:.3f}s to print the output. All in all it took {:.3f}s.".format(module_load, image_open_load, print_output, entire)
 print(timings)
