@@ -4,13 +4,12 @@ t0 = time.time()
 from PIL import Image
 t1 = time.time()
 
-
 # def is_target_feature()
     # (e.g. colour channels as RGB tuple inputs) and returns a specific, useful output 
         # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 def is_target_feature(r, g, b):
     if r > 230 and g > 230 and b > 230:
-            return "white"                  # white background
+        return "white"
     if r > 235 and g > 214 and b > 183:
         return "beige"
     elif r > 224 and g > 173 and b > 89:
@@ -44,7 +43,7 @@ for i in range(len(breads)):
     mediumbrown_pixels = []
     darkbrown_pixels = []
     black_pixels = []
-    white_pixels = []
+
     for x in range(width):
         for y in range(height):
             # get pixel data
@@ -55,10 +54,8 @@ for i in range(len(breads)):
             colour_type = is_target_feature(pixel_r, pixel_g, pixel_b)  # determine what colour category this pixel belongs to
 
             # process pixel based on its colour category
-            if colour_type == "white":
-                white_pixels.append((x, y))      # store original pixel
-            elif colour_type == "beige":
-                beige_pixels.append((x, y))
+            if colour_type == "beige":
+                beige_pixels.append((x, y))     # store original pixel
             elif colour_type == "lightbrown":
                 lightbrown_pixels.append((x, y))
             elif colour_type == "mediumbrown":
@@ -68,8 +65,7 @@ for i in range(len(breads)):
             elif colour_type == "black":
                 black_pixels.append((x, y))
 
-    # calculate pixel counts for each colour
-    num_other = len(white_pixels)
+    # calculate pixel counts for each colour  
     num_beige = len(beige_pixels)
     num_lightbrown = len(lightbrown_pixels)
     num_mediumbrown = len(mediumbrown_pixels)
@@ -81,7 +77,6 @@ for i in range(len(breads)):
     total_burnt = num_darkbrown + num_black # beige, light brown, and medium brown do not count because it is not burnt
     total_bread = num_beige + num_lightbrown + num_mediumbrown + num_darkbrown + num_black # total area of the bread
 
-
     if total_bread > 0: # avoid dividing by 0 for safety
         burnt_percentage = total_burnt / total_bread * 100
         percentage.append((burnt_percentage, breads[i]))
@@ -91,8 +86,7 @@ for i in range(len(breads)):
 
     # print results
     output = "Based off bread {}, it is {:.2f}% burnt.".format(breads[i], burnt_percentage)
-    print(output)
-    
+    print(output)    
 
 #  *UNIT 6* implement the Selection Sort algorithm function yourself (not using built-in libraries for sorting)
     # sort the master list based on the calculated Feature Density Score (highest to lowest)
