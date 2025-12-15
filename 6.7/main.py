@@ -11,9 +11,9 @@ t1 = time.time()
 def is_target_feature(r, g, b):
     if r > 230 and g > 230 and b > 230:
             return "white"                  # white background
-    if r > 235 and r <= 250 and g > 214 and g <= 229 and b > 183 and b <= 195:
+    if r > 235 and g > 214 and b > 183:
         return "beige"
-    elif r > 224 and r <= 234 and g > 173 and g <= 188 and b > 89 and b <= 104:
+    elif r > 224 and g > 173 and b > 89:
         return "lightbrown"
     elif r > 179 and g > 88 and b > 26:
         return "mediumbrown"
@@ -111,7 +111,7 @@ for i in percentage[:5]:
 
 #  *UNIT 6* implement the Binary Search algorithm function yourself to search the sorted list for a specific target score
 def search(list_of_lists, query):
-    querymin = query - 10
+    querymin = query - 5 # if burnt percentage is more than 95% (100 - 5)
     search_start_index = 0  # define indexes of search space
     search_end_index = len(list_of_lists) - 1
 
@@ -121,7 +121,7 @@ def search(list_of_lists, query):
         if list_of_lists[midpoint][0] <= query and list_of_lists[midpoint][0] >= querymin: # if the element in the centre is what we are looking for, return element
             return list_of_lists[midpoint][1]
         
-        elif list_of_lists[midpoint][0] <= query and list_of_lists[midpoint][0] >= querymin:    # if what we are looking for is greater than the centre value:
+        elif list_of_lists[midpoint][0] > query and list_of_lists[midpoint][0] >= querymin:    # if what we are looking for is greater than the centre value:
             search_start_index = midpoint + 1   # cut out entire left-hand side of our search space
 
         else:   # if our query is less than our centre value:
@@ -142,5 +142,5 @@ module_load = t1 - t0
 image_open_load = t2 - t1
 print_output = t3 - t2
 entire = t3 - t0
-timings = "It took {:.3f}s to import PIL, {:.3f}s to load the image, and {:.3f}s to print the output. All in all it took {:.3f}s.".format(module_load, image_open_load, print_output, entire)
+timings = "It took {:.3f}s to import PIL, {:.3f}s to load the images, and {:.3f}s to print the output. All in all it took {:.3f}s.".format(module_load, image_open_load, print_output, entire)
 print(timings)
