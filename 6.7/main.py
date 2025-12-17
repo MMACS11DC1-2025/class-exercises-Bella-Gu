@@ -9,7 +9,7 @@ t1 = time.time()
         # (e.g., returns True if the pixel matches your custom feature definition else False, or a weight)
 def is_target_feature(r, g, b):
     if r > 230 and g > 230 and b > 230:
-        return "white"
+        return "white"      # white background
     if r > 235 and g > 214 and b > 183:
         return "beige"
     elif r > 224 and g > 173 and b > 89:
@@ -121,7 +121,7 @@ def search(list_of_lists, query):
         else:   # if our query is less than our centre value:
             search_end_index = midpoint - 1 # cut out entire right-hand side of our search space
 
-search_target = 100.00    # looking for bread with 100% burn
+search_target = 100.00    # looking for bread with ~100% burn
 found_target = search(percentage, search_target)
 
 if found_target:
